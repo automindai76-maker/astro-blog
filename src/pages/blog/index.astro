@@ -7,108 +7,26 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
+	<head><BaseHead title={`Archives | ${SITE_TITLE}`} description={SITE_DESCRIPTION} /></head>
 	<body>
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
+			<section class="archive-intro" aria-labelledby="archive-title"><p class="eyebrow">British War Foundry / Field archive</p><h1 id="archive-title">Dispatches from the frontlines.</h1><p class="intro-copy">Long-form histories, engineering notes, and battlefield analysis for the machines that changed modern warfare.</p><div class="archive-rule"><span>{posts.length.toString().padStart(2, '0')} reports</span><span>Sorted by latest briefing</span></div></section>
+			<section class="archive-list" aria-label="Published reports">
+				{posts.map((post, index) => <article class="archive-item"><a class="archive-image" href={`/blog/${post.id}/`} aria-label={`Read ${post.data.title}`}>{post.data.heroImage ? <Image width={720} height={400} src={post.data.heroImage} alt="" /> : <div class="image-placeholder">FIELD<br />IMAGE</div>}<span class="image-index">{String(index + 1).padStart(2, '0')}</span></a><div class="archive-copy"><p class="report-label">Report {String(index + 1).padStart(2, '0')} / Armored warfare</p><h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2><p class="description">{post.data.description}</p><div class="item-meta"><FormattedDate date={post.data.pubDate} /><a href={`/blog/${post.id}/`}>Read dossier <span aria-hidden="true">→</span></a></div></div></article>)}
 			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+<style>
+	:global(body) { background: #f5f1e9; color: #27302f; font-family: Georgia, 'Times New Roman', serif; }
+	:global(main) { width: 100%; max-width: none; margin: 0; padding: 0; }
+	.archive-intro, .archive-list { max-width: 1180px; margin: auto; padding-left: 2rem; padding-right: 2rem; }.archive-intro { padding-top: 6rem; padding-bottom: 4rem; }.eyebrow, .report-label, .archive-rule, .item-meta, .image-index { font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: .12em; font-size: .7rem; font-weight: 700; }.eyebrow, .report-label { color: #ba4b2f; }.archive-intro h1 { max-width: 800px; margin: .8rem 0 1.2rem; color: #27302f; font-size: clamp(3.5rem, 7vw, 7.4rem); line-height: .88; letter-spacing: -.06em; }.intro-copy { max-width: 580px; color: #53615d; font-size: 1.2rem; line-height: 1.55; }.archive-rule { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; padding: 1rem 0; color: #738078; border-top: 1px solid #c5c7b9; border-bottom: 1px solid #c5c7b9; }.archive-list { padding-bottom: 7rem; }.archive-item { display: grid; grid-template-columns: minmax(300px, 43%) 1fr; gap: 4rem; padding: 2.5rem 0; border-bottom: 1px solid #c5c7b9; }.archive-image { position: relative; display: block; overflow: hidden; aspect-ratio: 1.8; background: #52655b; border: 1px solid #27302f; box-shadow: 8px 8px 0 #ba4b2f; }.archive-image img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 0; filter: saturate(.85); transition: transform .35s ease, filter .35s ease; }.archive-image:hover img { transform: scale(1.04); filter: saturate(1); }.image-placeholder { display: grid; height: 100%; place-items: center; color: #f4c15d; font-family: 'Courier New', monospace; text-align: center; }.image-index { position: absolute; right: .8rem; bottom: .8rem; padding: .45rem; color: #f5f1e9; background: #27302f; }.archive-copy { display: flex; flex-direction: column; justify-content: center; padding: 1rem 0; }.report-label { margin: 0 0 1.2rem; }.archive-copy h2 { max-width: 620px; margin: 0 0 1.2rem; font-size: clamp(2rem, 3.6vw, 4rem); line-height: .96; letter-spacing: -.045em; }.archive-copy h2 a { color: #27302f; text-decoration: none; }.archive-copy h2 a:hover { color: #ba4b2f; }.description { max-width: 570px; margin: 0; color: #53615d; font-size: 1.08rem; line-height: 1.6; }.item-meta { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; padding-top: 1rem; color: #738078; border-top: 1px solid #c5c7b9; }.item-meta a { color: #ba4b2f; text-decoration: none; }.item-meta a span { font-size: 1rem; }.archive-item:nth-child(even) .archive-image { box-shadow: 8px 8px 0 #f4c15d; }.archive-item:last-child { border-bottom: 0; }
+	@media (max-width: 800px) { .archive-intro { padding-top: 4rem; }.archive-item { grid-template-columns: 1fr; gap: 2rem; }.archive-image { max-width: 680px; }.archive-copy { padding: 0; }.archive-copy h2 { max-width: 700px; } }
+	@media (max-width: 520px) { .archive-intro, .archive-list { padding-left: 1.1rem; padding-right: 1.1rem; }.archive-intro h1 { font-size: 3.7rem; }.archive-rule { align-items: flex-start; flex-direction: column; gap: .55rem; }.archive-item { padding: 2rem 0; gap: 1.7rem; }.archive-image { box-shadow: 5px 5px 0 #ba4b2f; }.archive-copy h2 { font-size: 2.45rem; }.item-meta { align-items: flex-start; flex-direction: column; gap: .6rem; } }
+</style>
