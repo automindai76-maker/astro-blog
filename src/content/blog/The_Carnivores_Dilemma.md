@@ -2,6 +2,7 @@
 title: "The Carnivore's Dilemma: Why Humans Primarily Eat Herbivores"
 description: 'A biological and ecological look at why humans primarily eat herbivores instead of apex predators.'
 pubDate: 'Aug 11 2026'
+heroImage: '../../assets/imgi_88_cfimages.jpg'
 ---
 
 # The Carnivore's Dilemma: Why Humans Primarily Eat Herbivores
@@ -52,3 +53,13 @@ Hunting a predator, on the other hand, requires an immense expenditure of calori
 Understanding these biological laws isn't just about analyzing our hunter-gatherer past; it directly influences our agricultural future. As global populations rise, the efficiency of our food systems becomes critical.
 
 Every time we choose to eat an animal, we are factoring in the energy required to feed that animal. This is why agricultural science continually focuses on optimizing the diets of primary consumers—making sure that the transition of energy from plant to herbivore to human is as frictionless as possible.
+
+## Visual Reference: The M113 Family
+
+The visual language of armored warfare is also a record of engineering priorities: mobility, protection, and the ability to carry people through hostile terrain. These reference images show the M113 family across different configurations and eras.
+
+![M113 armored personnel carrier in a field display](../../assets/imgi_88_cfimages.jpg)
+
+![Historic M113 armored personnel carrier](../../assets/imgi_93_cfimages.jpg)
+
+![Modern main battle tank profile](../../assets/imgi_114_cfimages.png)
