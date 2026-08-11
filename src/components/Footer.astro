@@ -3,7 +3,7 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} British War Foundry. All rights reserved.
+	<div class="footer-brand"><img src="/BWF_British_War_Foundry_logo_202607052225.jpeg" alt="" /> <span>&copy; {today.getFullYear()} British War Foundry. All rights reserved.</span></div>
 	<div class="social-links">
 		<a class="footer-channel" href="https://www.youtube.com/@BritishWarFoundry" target="_blank" rel="noreferrer"><span class="youtube-mark">▶</span> Watch British War Foundry on YouTube</a>
 	</div>
@@ -15,6 +15,7 @@ const today = new Date();
 		color: rgb(var(--gray));
 		text-align: center;
 	}
+	.footer-brand { display: inline-flex; align-items: center; gap: .6rem; }.footer-brand img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
 	.social-links {
 		display: flex;
 		justify-content: center;

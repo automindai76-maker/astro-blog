@@ -5,7 +5,7 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2><a href="/">British War Foundry</a></h2>
+		<h2><a href="/"><img src="/BWF_British_War_Foundry_logo_202607052225.jpeg" alt="" />British War Foundry</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
@@ -25,15 +25,17 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	h2 {
 		margin: 0;
-		font-family: Georgia, 'Times New Roman', serif;
-		font-size: 1.05rem;
-		letter-spacing: -0.02em;
+		font-size: 1em;
 	}
 
 	h2 a,
 	h2 a.active {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
 		text-decoration: none;
 	}
+	h2 img { width: 32px; height: 32px; object-fit: cover; border-radius: 50%; }
 	nav {
 		display: flex;
 		align-items: center;
