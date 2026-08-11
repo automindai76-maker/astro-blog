@@ -1,63 +1,30 @@
 ---
-import AboutHeroImage from '../assets/imgi_93_cfimages.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import AboutImage from '../assets/imgi_93_cfimages.jpg';
 ---
-
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
-
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
-
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
-
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
-
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head><BaseHead title="About the Archives | British War Foundry" description="Meet Prof. Arthur Vance and learn how British War Foundry turns military history, engineering, and battlefield records into rigorous documentaries and articles." /></head>
+	<body>
+		<Header />
+		<main>
+			<section class="about-hero" aria-labelledby="about-title"><div class="hero-copy"><p class="eyebrow">British War Foundry / The researcher</p><h1 id="about-title">Welcome to the Archives: The Mind Behind the Machines</h1><p class="hero-intro">Military history is more than a record of outcomes. It is the study of machines, decisions, and the people asked to survive them.</p><a class="button" href="https://www.youtube.com/@BritishWarFoundry" target="_blank" rel="noreferrer"><span class="youtube-mark">▶</span> Meet me on YouTube</a></div><div class="portrait-frame"><Image src={AboutImage} width={720} height={520} alt="Armored vehicle in the British War Foundry archive" /><div class="frame-label">ARCHIVE PLATE / 01<br />FIELD RESEARCH</div></div></section>
++			<section class="about-section first-section" aria-labelledby="who-title"><div class="section-kicker">01 / The researcher</div><div class="section-copy"><h2 id="who-title">Who am I?</h2><p>Hello, I am <strong>Prof. Arthur Vance</strong>, the lead researcher and military historian breaking down complex warfare tactics on our YouTube channel.</p><p>For years, I have been fascinated not just by the outcome of historical conflicts, but by the anatomy of the battles and the engineering of the machines that fought them. This platform was created out of a deep-seated passion for military history, tactical analysis, and armored warfare.</p></div></section>
++			<section class="method-section" aria-labelledby="method-title"><div class="method-heading"><p class="eyebrow">The working file</p><h2 id="method-title">The Methodology:<br /><em>Beyond the Screen</em></h2></div><div class="method-copy"><p>When you watch a documentary on our channel or read an article on this blog, you are seeing the final product of countless hours of rigorous academic research. I don't rely on surface-level summaries.</p><p>Every script and blog post is born from foundational military history books, declassified tactical manuals, and authentic combat records. Whether it is studying the exact hull thickness of the 5083 aircraft-grade aluminum on an M113 or analyzing the strategic failures of counterinsurgency warfare, the goal is textbook accuracy in the digital world.</p><div class="research-notes"><span>Primary sources</span><span>Field reports</span><span>Technical records</span><span>Cross-referenced PDFs</span></div></div></section>
++			<section class="about-section philosophy" aria-labelledby="philosophy-title"><div class="section-kicker">03 / The philosophy</div><div class="section-copy"><h2 id="philosophy-title">Why the lab coat?</h2><blockquote>Warfare is a science.</blockquote><p>You might wonder why a military historian wears a lab coat. It represents our core philosophy: behind every tank track, artillery shell, and infantry maneuver lies physics, engineering, and calculated strategy.</p><p>We treat military history as an exact science, dissecting it with the precision of a researcher in a lab. Our bold, flat-vector animations and detailed illustrations strip away the noise and give you a clear, geometric breakdown of how history actually unfolded.</p></div></section>
++			<section class="mission" aria-labelledby="mission-title"><p class="eyebrow">04 / The mission</p><h2 id="mission-title">Build the ultimate digital library for students of warfare.</h2><p>The mission of this blog and our YouTube channel is simple: bridge the gap between heavy academic military literature and engaging, accessible digital content.</p><p><strong>Here, history isn't just told; it is analyzed, blueprinted, and understood.</strong></p><a class="button button-light" href="/blog">Explore the archives <span aria-hidden="true">→</span></a></section>
++			<section class="closing"><p>Thank you for being part of this journey. Dive into the articles, check the references, and join the discussion.</p><a href="https://www.youtube.com/@BritishWarFoundry" target="_blank" rel="noreferrer">British War Foundry on YouTube ↗</a></section>
++		</main>
++		<Footer />
++	</body>
++</html>
++<style>
++	:global(body) { background: #f5f1e9; color: #27302f; font-family: Georgia, 'Times New Roman', serif; }
++	:global(main) { width: 100%; max-width: none; padding: 0; }
++	.about-hero, .about-section, .method-section, .mission, .closing { max-width: 1180px; margin: auto; padding-left: 2rem; padding-right: 2rem; }.about-hero { display: grid; grid-template-columns: .95fr 1.05fr; align-items: center; gap: 5rem; padding-top: 5rem; padding-bottom: 6rem; }.eyebrow, .section-kicker, .frame-label, .research-notes { font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: .12em; font-size: .7rem; font-weight: 700; }.eyebrow, .section-kicker { color: #ba4b2f; }.about-hero h1 { margin: .9rem 0 1.5rem; font-size: clamp(3.2rem, 6vw, 6.4rem); line-height: .9; letter-spacing: -.055em; }.hero-intro { max-width: 520px; color: #53615d; font-size: 1.2rem; line-height: 1.55; }.button { display: inline-flex; gap: .7rem; align-items: center; margin-top: 1.4rem; padding: .95rem 1.1rem; color: #f5f1e9; background: #ba4b2f; font-family: 'Courier New', monospace; font-size: .75rem; font-weight: 700; text-transform: uppercase; text-decoration: none; }.button:hover { box-shadow: 4px 5px 0 #27302f; transform: translateY(-2px); }.youtube-mark { color: #f4c15d; }.portrait-frame { position: relative; background: #27302f; border: 1px solid #27302f; box-shadow: 12px 12px 0 #f4c15d; }.portrait-frame img { display: block; width: 100%; height: 440px; object-fit: cover; border-radius: 0; filter: saturate(.75); }.frame-label { position: absolute; left: 1rem; bottom: 1rem; padding: .55rem; color: #f5f1e9; background: #27302f; line-height: 1.5; }.about-section { display: grid; grid-template-columns: 180px 1fr; gap: 3rem; padding-top: 6rem; padding-bottom: 6rem; border-top: 1px solid #c5c7b9; }.section-kicker { padding-top: .5rem; }.section-copy { max-width: 760px; }.section-copy h2, .method-heading h2, .mission h2 { margin: 0 0 1.5rem; color: #27302f; font-size: clamp(2.6rem, 4.8vw, 5rem); line-height: .94; letter-spacing: -.045em; }.section-copy p, .method-copy p, .mission p { color: #53615d; font-size: 1.1rem; line-height: 1.7; }.section-copy strong, .mission strong { color: #27302f; }.method-section { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; padding-top: 6rem; padding-bottom: 6rem; background: #27302f; color: #f5f1e9; max-width: none; }.method-section > * { max-width: 520px; }.method-heading { justify-self: end; width: 100%; }.method-heading h2 { color: #f5f1e9; }.method-heading em { color: #f4c15d; font-style: normal; }.method-copy p { color: #bdc7bf; }.research-notes { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-top: 2rem; color: #f4c15d; font-size: .65rem; }.research-notes span { padding: .7rem; border: 1px solid #53615d; }.philosophy blockquote { margin: 0 0 1.5rem; padding: 1rem 1.4rem; color: #27302f; background: #f4c15d; border-left: 6px solid #ba4b2f; font-size: 1.45rem; font-weight: 700; }.mission { max-width: none; padding-top: 6rem; padding-bottom: 6rem; background: #d8e2dc; }.mission h2 { max-width: 800px; }.mission p { max-width: 650px; }.button-light { color: #27302f; background: #f4c15d; }.closing { display: flex; justify-content: space-between; gap: 2rem; align-items: center; padding-top: 2rem; padding-bottom: 2rem; color: #738078; }.closing p { margin: 0; }.closing a { color: #ba4b2f; font-family: 'Courier New', monospace; font-size: .72rem; font-weight: 700; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
++	@media (max-width: 800px) { .about-hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 3rem; }.portrait-frame img { height: 320px; }.about-section { grid-template-columns: 1fr; gap: 1rem; padding-top: 4rem; padding-bottom: 4rem; }.method-section { grid-template-columns: 1fr; gap: 2rem; padding-top: 4rem; padding-bottom: 4rem; }.method-heading { justify-self: start; }.mission { padding-top: 4rem; padding-bottom: 4rem; }.closing { align-items: flex-start; flex-direction: column; } }
++	@media (max-width: 520px) { .about-hero, .about-section, .method-section, .mission, .closing { padding-left: 1.1rem; padding-right: 1.1rem; }.about-hero h1 { font-size: 3.5rem; }.research-notes { grid-template-columns: 1fr; }.closing a { white-space: normal; } }
++</style>
