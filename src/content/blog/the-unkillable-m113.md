@@ -5,10 +5,6 @@ pubDate: 'Aug 11 2026'
 heroImage: '../../assets/imgi_88_cfimages.jpg'
 ---
 
-# The Unkillable M113
-
-## The Armored Personnel Carrier That Refused to Die
-
 ## The Birth of the "Tin Can"
 
 The year was 1960. The location: San Jose, California. Inside a sprawling factory complex owned by the Food Machinery Corporation (FMC), a tracked vehicle was quietly rolling off the production line and into the California sun. To the untrained eye, it looked cheap, unremarkable, and completely expendable. It weighed just under 13 tons, but its hull was not forged from heavy steel. Instead, it was constructed from aluminum.

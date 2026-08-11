@@ -10,77 +10,31 @@ type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
-
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
-
+	<head><BaseHead title={title} description={description} /></head>
 	<body>
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+				<header class="article-hero">
+					<div class="hero-inner">
+						<div class="hero-copy"><p class="eyebrow">Field dossier / Armored warfare</p><h1>{title}</h1><p class="dek">{description}</p><div class="meta"><span>Published <FormattedDate date={pubDate} /></span>{updatedDate && <span>Updated <FormattedDate date={updatedDate} /></span>}<span>British War Foundry archive</span></div></div>
+						{heroImage && <div class="hero-image"><Image width={1200} height={600} src={heroImage} alt="M113 armored personnel carrier" /></div>}
 					</div>
-					<slot />
-				</div>
+				</header>
+				<div class="article-shell"><aside class="article-index"><span>REPORT 01</span><strong>M113</strong><small>1950s → present</small></aside><div class="prose"><slot /></div></div>
 			</article>
 		</main>
 		<Footer />
 	</body>
 </html>
+<style>
+	:global(body) { background: #f5f1e9; color: #27302f; font-family: Georgia, 'Times New Roman', serif; }
+	:global(main) { width: 100%; max-width: none; margin: 0; padding: 0; }
+	.article-hero { background: #27302f; color: #f5f1e9; border-bottom: 6px solid #ba4b2f; }
+	.hero-inner { max-width: 1180px; margin: auto; padding: 4.5rem 2rem 0; display: grid; grid-template-columns: .9fr 1.1fr; gap: 3.5rem; align-items: end; }
+	.hero-copy { padding-bottom: 3.5rem; }.eyebrow, .meta, .article-index { font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: .12em; }.eyebrow { color: #f4c15d; font-size: .72rem; font-weight: 700; margin: 0 0 1.5rem; }.hero-copy h1 { max-width: 650px; color: #f5f1e9; font-size: clamp(3.2rem, 6vw, 6.7rem); line-height: .9; letter-spacing: -.05em; margin: 0 0 1.5rem; }.dek { max-width: 520px; color: #bdc7bf; font-size: 1.2rem; line-height: 1.5; }.meta { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin-top: 2rem; color: #9eaaa2; font-size: .68rem; }.meta span + span { border-left: 1px solid #63716a; padding-left: 1.2rem; }.hero-image { align-self: stretch; min-height: 360px; }.hero-image img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; border-radius: 0; display: block; filter: saturate(.82) contrast(1.05); }
+	.article-shell { max-width: 1180px; margin: auto; padding: 5rem 2rem 7rem; display: grid; grid-template-columns: 180px minmax(0, 780px); gap: 3rem; }.article-index { position: sticky; top: 2rem; align-self: start; display: flex; flex-direction: column; gap: .5rem; color: #ba4b2f; font-size: .7rem; }.article-index strong { color: #27302f; font-family: Georgia, serif; font-size: 3.3rem; letter-spacing: -.08em; line-height: .9; }.article-index small { color: #738078; font-size: .65rem; }.prose { min-width: 0; color: #34403d; font-size: 1.12rem; line-height: 1.8; }.prose :global(h2) { color: #27302f; font-size: clamp(2rem, 4vw, 3.2rem); line-height: .98; letter-spacing: -.04em; margin: 4rem 0 1.4rem; padding-left: 1rem; border-left: 6px solid #ba4b2f; }.prose :global(h2:first-child) { margin-top: 0; }.prose :global(p) { margin: 0 0 1.5rem; }.prose :global(strong) { color: #27302f; }.prose :global(blockquote) { margin: 2rem 0; padding: 1.5rem 1.8rem; border: 1px solid #c5c7b9; border-left: 6px solid #f4c15d; background: #ede9df; font-size: 1.3rem; line-height: 1.4; }.prose :global(table) { display: block; overflow-x: auto; border-collapse: collapse; margin: 2rem 0; font-size: .95rem; }.prose :global(th), .prose :global(td) { min-width: 150px; padding: .8rem 1rem; border: 1px solid #c5c7b9; text-align: left; }.prose :global(th) { background: #27302f; color: #f5f1e9; font-family: 'Courier New', monospace; font-size: .72rem; text-transform: uppercase; }.prose :global(ul), .prose :global(ol) { padding-left: 1.4rem; margin-bottom: 2rem; }.prose :global(li) { margin-bottom: .6rem; }.prose :global(img) { display: block; width: 100%; max-height: 560px; object-fit: cover; margin: 2.5rem 0 .7rem; border-radius: 0; border: 1px solid #c5c7b9; }.prose :global(p:has(img)) { margin-bottom: 2rem; }.prose :global(p:has(img) + p:has(img)) { margin-top: 1.5rem; }.prose :global(h2:last-of-type) { margin-top: 5rem; }.prose :global(a) { color: #ba4b2f; }
+	@media (max-width: 800px) { .hero-inner { grid-template-columns: 1fr; gap: 0; padding-top: 3rem; }.hero-copy { padding-bottom: 2.5rem; }.hero-image, .hero-image img { min-height: 280px; max-height: 380px; }.article-shell { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }.article-index { position: static; flex-direction: row; align-items: baseline; border-bottom: 1px solid #c5c7b9; padding-bottom: 1rem; }.article-index strong { font-size: 2rem; }.article-index small { margin-left: auto; } }
+	@media (max-width: 520px) { .hero-inner, .article-shell { padding-left: 1.1rem; padding-right: 1.1rem; }.hero-copy h1 { font-size: 3.5rem; }.meta { flex-direction: column; gap: .5rem; }.meta span + span { border-left: 0; padding-left: 0; }.prose { font-size: 1.02rem; }.prose :global(h2) { font-size: 2.25rem; }.prose :global(blockquote) { padding: 1rem; font-size: 1.1rem; } }
+</style>
