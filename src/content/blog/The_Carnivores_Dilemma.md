@@ -1,3 +1,9 @@
+---
+title: "The Carnivore's Dilemma: Why Humans Primarily Eat Herbivores"
+description: 'A biological and ecological look at why humans primarily eat herbivores instead of apex predators.'
+pubDate: 'Aug 11 2026'
+---
+
 # The Carnivore's Dilemma: Why Humans Primarily Eat Herbivores
 
 Have you ever looked at a standard dinner menu and noticed a biological pattern? We eat beef, chicken, lamb, and pork. We rely heavily on cows grazing in pastures and chickens pecking at grains. What we rarely see, however, is a widespread culinary demand for lions, wolves, bears, or eagles.

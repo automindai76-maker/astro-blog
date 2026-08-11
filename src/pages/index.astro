@@ -1,49 +1,52 @@
 ---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
----
 
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPost = posts.find((post) => post.data.title.toLowerCase().includes('m113')) ?? posts[0];
+const supportingPosts = posts.filter((post) => post !== featuredPost).slice(0, 2);
+---
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
+	<head><BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} /></head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero" aria-labelledby="hero-title">
+				<div class="hero-copy"><p class="eyebrow">Field notes • Engineering • Strategy</p><h1 id="hero-title">Uncovering the Titans of War: Tanks, Tactics & Military History</h1><p class="hero-intro">From muddy trenches to advanced armored warfare, dive deep into the machines and minds that shaped history.</p><div class="hero-actions"><a class="button button-primary" href="https://www.youtube.com/@BritishWarFoundry" target="_blank" rel="noreferrer">Watch the latest documentary <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="/blog">Read historical archives <span aria-hidden="true">→</span></a></div></div>
+				<div class="hero-art" aria-label="Illustration of an armored tank on a battlefield" role="img"><div class="art-label">PLATE 01 / ARMORED WARFARE</div><div class="sun"></div><div class="smoke smoke-one"></div><div class="smoke smoke-two"></div><div class="ridge ridge-back"></div><div class="ridge ridge-front"></div><div class="tank"><div class="tank-barrel"></div><div class="tank-top"></div><div class="tank-body"></div><div class="track track-left"></div><div class="track track-right"></div></div><div class="coordinate">52° 31' N<br />13° 24' E</div></div>
+			</section>
+			<section class="intro section-block" aria-labelledby="intro-title"><div class="section-kicker">01 / The briefing</div><div><h2 id="intro-title">The Science and History of Warfare</h2><p>History isn't just about dates and places; it's about engineering, strategy, and the survival of soldiers on the front lines. Here, we dissect the blueprints and battle records of the world's most famous armored vehicles, turning complex military history into detailed, educational documentaries and articles.</p><p>From the unkillable M113 APC to the legendary tanks of WWII, the facts and references are laid out for curious minds.</p></div></section>
+			<section class="section-block" aria-labelledby="topics-title"><div class="section-kicker">02 / Areas of study</div><div class="section-content"><h2 id="topics-title">Three ways into the archive</h2><div class="topic-grid"><article class="topic"><span class="topic-icon">▣</span><h3>Armored Vehicles & Tanks</h3><p>Detailed profiles, engineering specs, and combat histories of famous tanks and APCs.</p></article><article class="topic"><span class="topic-icon">✦</span><h3>Historic Battles</h3><p>Step-by-step breakdowns of strategies, ambushes, and turning points in global conflicts.</p></article><article class="topic"><span class="topic-icon">⚙</span><h3>Military Engineering</h3><p>Armor thickness, weaponry, logistics, and the mechanics behind survival.</p></article></div></div></section>
+			<section class="section-block dispatches" aria-labelledby="dispatches-title"><div class="section-kicker">03 / Latest from the frontlines</div><div class="section-content"><div class="heading-row"><h2 id="dispatches-title">Recent transcripts & deep dives</h2><a href="/blog">View all archives →</a></div>{featuredPost && <a class="featured-post" href={`/blog/${featuredPost.id}/`}>{featuredPost.data.heroImage ? <Image width={720} height={360} src={featuredPost.data.heroImage} alt="" /> : <div class="image-placeholder"><span>ARCHIVE IMAGE<br />M113 / APC</span></div>}<div class="post-copy"><p class="post-label">Featured dispatch</p><h3>{featuredPost.data.title}</h3><p>{featuredPost.data.description}</p><p class="post-date"><FormattedDate date={featuredPost.data.pubDate} /> <span>Read dossier →</span></p></div></a>}{supportingPosts.length > 0 && <div class="post-grid">{supportingPosts.map((post) => <a class="small-post" href={`/blog/${post.id}/`}><span class="post-label">Field note</span><h3>{post.data.title}</h3><p>{post.data.description}</p><span class="post-date"><FormattedDate date={post.data.pubDate} /> <b>→</b></span></a>)}</div>}</div></section>
+			<section class="briefing" aria-labelledby="briefing-title"><div><p class="eyebrow">The briefing room</p><h2 id="briefing-title">Stay close to the evidence.</h2><p>Never miss a new documentary or historical deep dive from British War Foundry.</p></div><a class="button button-light" href="https://www.youtube.com/@BritishWarFoundry" target="_blank" rel="noreferrer"><span class="youtube-mark">▶</span> Subscribe on YouTube</a></section>
 		</main>
+		<style>
+			:global(body) { background: #f5f1e9; color: #27302f; font-family: Georgia, 'Times New Roman', serif; }
+			:global(main) { width: 100%; max-width: none; padding: 0; }
+			.hero, .section-block, .briefing { max-width: 1180px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; }
+			.hero { min-height: 600px; display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 4rem; padding-top: 5rem; padding-bottom: 5rem; }
+			.eyebrow, .section-kicker, .post-label, .art-label, .coordinate { font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 700; }
+			.eyebrow { color: #ba4b2f; margin: 0 0 1.2rem; }
+			.hero h1 { max-width: 680px; font-size: clamp(3rem, 6vw, 6.3rem); letter-spacing: -.04em; line-height: .92; color: #253332; margin-bottom: 1.5rem; }
+			.hero-intro { max-width: 550px; font-size: 1.22rem; line-height: 1.55; color: #53615d; }
+			.hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+			.button { display: inline-flex; align-items: center; gap: .7rem; padding: .9rem 1.1rem; font-family: 'Courier New', monospace; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+			.button:hover { transform: translateY(-3px); box-shadow: 4px 5px 0 #27302f; }
+			.button-primary { color: #f5f1e9; background: #ba4b2f; }.button-secondary { color: #27302f; border: 1px solid #27302f; }.button-light { color: #27302f; background: #f4c15d; }
+			.hero-art { position: relative; min-height: 430px; overflow: hidden; background: #d8e2dc; border: 1px solid #27302f; box-shadow: 12px 12px 0 #ba4b2f; }
+			.art-label, .coordinate { position: absolute; z-index: 3; color: #27302f; }.art-label { top: 1.1rem; left: 1.1rem; }.coordinate { right: 1.1rem; bottom: 1.1rem; text-align: right; line-height: 1.5; }
+			.sun { position: absolute; width: 150px; height: 150px; right: 13%; top: 16%; border-radius: 50%; background: #f4c15d; }.ridge { position: absolute; bottom: 0; width: 110%; left: -5%; background: #7c8c74; transform: skewY(-8deg); transform-origin: bottom left; }.ridge-back { height: 45%; opacity: .75; }.ridge-front { height: 26%; background: #52655b; transform: skewY(7deg); }.smoke { position: absolute; background: #f5f1e9; border: 1px solid #9aaba0; border-radius: 50%; opacity: .8; }.smoke-one { width: 84px; height: 84px; left: 47%; top: 26%; }.smoke-two { width: 54px; height: 54px; left: 55%; top: 20%; }
+			.tank { position: absolute; z-index: 2; width: 54%; height: 150px; left: 24%; bottom: 17%; }.tank-body, .tank-top, .tank-barrel, .track { position: absolute; background: #273d39; }.tank-body { left: 13%; bottom: 31px; width: 67%; height: 68px; clip-path: polygon(8% 0, 88% 0, 100% 100%, 0 100%); }.tank-top { left: 25%; bottom: 91px; width: 37%; height: 38px; border-radius: 7px 7px 2px 2px; }.tank-barrel { left: 55%; bottom: 108px; width: 60%; height: 10px; transform: rotate(-7deg); transform-origin: left; }.track { bottom: 6px; width: 38%; height: 42px; border: 7px solid #182724; border-radius: 20px; }.track-left { left: 8%; }.track-right { right: 8%; }
+			.section-block { display: grid; grid-template-columns: 180px 1fr; gap: 3rem; padding-top: 6rem; padding-bottom: 6rem; border-top: 1px solid #c5c7b9; }.section-kicker { color: #ba4b2f; padding-top: .55rem; }.section-content h2, .intro h2 { max-width: 760px; font-size: clamp(2.2rem, 4vw, 4.2rem); line-height: .98; letter-spacing: -.035em; color: #27302f; }.intro p { max-width: 750px; }.intro p, .topic p, .post-copy > p, .small-post p, .briefing p { color: #53615d; }.topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }.topic { min-height: 235px; padding: 1.4rem; border: 1px solid #c5c7b9; background: #ede9df; }.topic-icon { display: block; color: #ba4b2f; font-size: 2rem; margin-bottom: 1.6rem; }.topic h3 { font-size: 1.35rem; line-height: 1.05; }.heading-row { display: flex; align-items: end; justify-content: space-between; gap: 1rem; }.heading-row a { color: #ba4b2f; font-family: 'Courier New', monospace; font-size: .75rem; text-transform: uppercase; font-weight: 700; white-space: nowrap; }.featured-post { display: grid; grid-template-columns: 1fr 1fr; margin-top: 2.5rem; color: inherit; text-decoration: none; background: #ede9df; border: 1px solid #c5c7b9; }.featured-post img, .image-placeholder { width: 100%; height: 100%; min-height: 300px; object-fit: cover; border-radius: 0; }.image-placeholder { display: grid; place-items: center; background: #52655b; color: #f4c15d; text-align: center; font-family: 'Courier New', monospace; font-size: .9rem; letter-spacing: .12em; }.post-copy { padding: 2rem; }.post-label { color: #ba4b2f; margin: 0 0 1rem; }.post-copy h3, .small-post h3 { font-size: 2rem; line-height: 1; color: #27302f; }.post-date { display: flex; justify-content: space-between; gap: 1rem; font-family: 'Courier New', monospace; font-size: .72rem; text-transform: uppercase; }.post-date span, .post-date b { color: #ba4b2f; }.post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem; }.small-post { padding: 1.5rem; color: inherit; text-decoration: none; border: 1px solid #c5c7b9; }.briefing { max-width: none; display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-top: 4rem; padding-bottom: 4rem; background: #27302f; color: #f5f1e9; }.briefing h2 { color: #f5f1e9; margin-bottom: .5rem; }.briefing p { margin: 0; }.youtube-mark { color: #ba4b2f; }
+			@media (max-width: 800px) { .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 3rem; }.hero-art { min-height: 330px; }.section-block { grid-template-columns: 1fr; gap: 1rem; padding-top: 4rem; padding-bottom: 4rem; }.topic-grid, .featured-post { grid-template-columns: 1fr; }.featured-post img, .image-placeholder { min-height: 220px; }.briefing { align-items: flex-start; flex-direction: column; } }
+			@media (max-width: 520px) { .hero, .section-block, .briefing { padding-left: 1.1rem; padding-right: 1.1rem; }.hero h1 { font-size: 3.25rem; }.hero-actions, .button { width: 100%; }.button { justify-content: space-between; }.post-grid { grid-template-columns: 1fr; }.heading-row { align-items: flex-start; flex-direction: column; } }
+		</style>
 		<Footer />
 	</body>
 </html>
